@@ -5,15 +5,8 @@ The following R packages are used in this script:
 	no copies at all, list columns, a fast friendly file reader and
 	parallel file writer.
  
- - plyr: A set of tools that solves a common set of problems, where there is
-	need to break a big problem down into manageable pieces, operate on each
-	piece and then put all the pieces back together.
- 
  - dplyr: A fast, consistent tool for working with data frame like objects,
 	both in memory and out of memory.
- 
- - reshape2: n Flexibly restructure and aggregate data using just two
-	functions: melt and 'dcast' (or 'acast')
 
  - tidyr: An evolution of 'reshape2'. It's designed specifically for data
 	tidying (not general reshaping or aggregating) and works well with
@@ -52,6 +45,5 @@ The following R packages are used in this script:
 	81 variables related to either mean() or std() of other variables/measurements.
 	
   - X_merged3 is an independent data.frame structure built out of X_merged2, by
-	computing the average measurements per Activity and per Subject.
-	
-  - 
+	computing the average measurements per Activity and per Subject. This is the
+	final outcome of this assigment request and it is stored to file X_merged3.txt.
