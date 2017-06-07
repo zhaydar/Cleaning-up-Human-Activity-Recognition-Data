@@ -1,23 +1,35 @@
+########################################################################
 ## This script does the following:
-## ADD
+## 
+## 0) Downloads HAR dataset from UCI open data repository and extracts
+##    all files to local working directory "./data"
+## 
+## 1) Merges the training and the test sets to create one data set.
+## 
+## 3) Uses descriptive activity names to name the activities in the data set
+## 
+## 4) Appropriately labels the data set with descriptive variable names.
+## 
+## 2) Extracts only the measurements on the mean and standard deviation
+##    for each measurement.
+## 
+## 5) From the data set in step 4, creates a second, independent tidy
+##    data set with the average of each variable for each activity and
+##    each subject.
+## 
+########################################################################
 
 
-## Install and load necessary R packages & libraries
+## Install and load necessary R packages/libraries
 
 if (!require("data.table")) install.packages("data.table")
 library(data.table)
-
-if (!require("plyr")) install.packages("plyr")
-library(plyr)
 
 if (!require("dplyr")) install.packages("dplyr")
 library(dplyr)
 
 if (!require("tidyr")) install.packages("tidyr")
 library(tidyr)
-
-if (!require("reshape2")) install.packages("reshape2")
-library(reshape2)
 
 
 ## Create local "data" directory, download and unzip dataset into it.
@@ -28,14 +40,9 @@ if (!file.exists("./data/HAR.zip")) download.file(fileUrl, destfile="./data/HAR.
 if (file.exists("./data/HAR.zip")) unzip("./data/HAR.zip", junkpaths=TRUE, exdir="./data", unzip="internal")
 setwd("./data")
 
-########################################################################
-## 1) Merges the training and the test sets to create one data set.
-## 3) Uses descriptive activity names to name the activities in the data set
-## 4) Appropriately labels the data set with descriptive variable names.
-########################################################################
 
 ## Read in the features.txt file, and store it in data.frame "features"
-## These would eventually be used as the column headings (vars) of 
+## These will later be used as the column headings (vars) of 
 ## the merged measurement data set
 features <- read.table("features.txt", header=FALSE)
 ## Add "Subject" & "Activity" var names to the list of 561 vars
@@ -115,3 +122,6 @@ for (i in 1:30) {
   j <- j+5
 
 }
+
+write.table(X_merged3, file="X_merged3.txt", row.name=FALSE)
+View(X_merged3)
